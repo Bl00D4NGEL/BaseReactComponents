@@ -1,5 +1,8 @@
 import React from 'react';
 
-export default function PasswordInput(props) {
-    return <input {...props} type="password" onChange={props.onChange}/>
+export default function PasswordInput({onChange, onChangeSetter, ...other}) {
+    if (onChangeSetter !== undefined) {
+        onChange = (e) => onChangeSetter(e.target.value);
+    }
+    return <input {...other} type="password" onChange={onChange}/>
 }
